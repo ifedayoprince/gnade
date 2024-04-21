@@ -12,34 +12,26 @@ import android.content.Intent;
 public class accessibilityService extends AccessibilityService {
 
     private String statusMsg, name, date;
-    private boolean enabled = false;
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
+        Log.d(TAG, "OnEvent");
         proccessResult(event);
     }
     
     private void proccessResult(AccessibilityEvent event){
         if(event.getClassName() != null && event.getClassName().toString().equals("com.whatsapp.status.playback.StatusPlaybackActivity")) {
-            enabled = true;
-            }else{
-                enabled = false;
-            }
-         if(enabled == true){
-                AccessibilityNodeInfo rootNodeInfo = event.getSource();
-                if (rootNodeInfo != null) {
+                if (event.getSource() != null) {
                     Log.d(TAG, "1");
-                    if (accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "message_text")) {
+                    if (accessibilityServiceUtils.isMessageTextVisible(event.getSource(), "message_text")) {
                         //Retrieve screen status text
-                        //    Toast.makeText(MainActivity.context, "Yes", Toast.LENGTH_SHORT).show();
-                        getScreenText(rootNodeInfo);
+                        Log.d(TAG, "YES");
+                        getScreenText(event.getSource());
                     } else {
-                        // Toast.makeText(MainActivity.context, "No", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "FALSE");
+                        Log.d(TAG, "No status text here");
                     }
-                    rootNodeInfo.recycle();
-                }else{
-                    Log.d(TAG, "NULL");
                 }
+             }else{
+                 Log.d(TAG, "NULL");
              }
         }
     
@@ -62,13 +54,6 @@ public class accessibilityService extends AccessibilityService {
     protected void onServiceConnected() {
         super.onServiceConnected();
         
-        AccessibilityServiceInfo info = new AccessibilityServiceInfo();
-        info.packageNames = new String[]{"com.whatsapp"}; // Register the package name "WhatsApp"
-        info.eventTypes =
-            AccessibilityEvent.TYPES_ALL_MASK ; // Register the desired event types
-        info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC; // Set feedback type
-
-        setServiceInfo(info);
         Log.d(TAG, "started");
     }
     

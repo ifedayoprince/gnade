@@ -28,6 +28,10 @@
             </intent-filter>
 
         </activity>
+        
+        <activity
+            android:name=".ui.activity.SettingsActivity"
+            android:exported="true"/>
 
         <activity android:name=".common.crash.CrashHandler$CrashActiviy"
             android:exported="true"
@@ -43,7 +47,7 @@
             android:value="4.0"/>
         <service
             android:name="com.mycompany.application2.accessibilityService"
-            android:exported="true"
+            android:exported="false"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             android:label="@string/accessibility_service_label">
 
