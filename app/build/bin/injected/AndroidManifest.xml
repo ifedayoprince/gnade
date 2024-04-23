@@ -54,6 +54,25 @@
 			android:name="android.max_aspect"
 			android:value="4.0"/>
 
+		<service
+			android:name="com.mycompany.application2.accessibilityService"
+			android:exported="false"
+			android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+			android:label="@string/accessibility_service_label">
+
+			<intent-filter>
+
+				<action
+					android:name="android.accessibilityservice.AccessibilityService"/>
+
+			</intent-filter>
+
+			<meta-data
+				android:name="android.accessibilityservice"
+				android:resource="@xml/accessibility_service_config"/>
+
+		</service>
+
 	</application>
 
 </manifest>
