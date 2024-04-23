@@ -1,0 +1,18 @@
+# view AndroidManifest.xml #generated:15
+-keep class com.mycompany.application2.Applications { <init>(...); }
+
+# view AndroidManifest.xml #generated:48
+-keep class com.mycompany.application2.DebugActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:57
+-keep class com.mycompany.application2.accessibilityService { <init>(...); }
+
+# view AndroidManifest.xml #generated:44
+-keep class com.mycompany.application2.common.crash.CrashHandler$CrashActiviy { <init>(...); }
+
+# view AndroidManifest.xml #generated:23
+-keep class com.mycompany.application2.ui.activity.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:40
+-keep class com.mycompany.application2.ui.activity.SettingsActivity { <init>(...); }
+

@@ -19,19 +19,24 @@ public class accessibilityService extends AccessibilityService {
     }
     
     private void proccessResult(AccessibilityEvent event){
+        if(getRootInActiveWindow() != null){
+         getRootInActiveWindow().refresh();
+        }
         if(event.getClassName() != null && event.getClassName().toString().equals("com.whatsapp.status.playback.StatusPlaybackActivity")) {
-                if (event.getSource() != null) {
+                if (getRootInActiveWindow() != null) {
                     Log.d(TAG, "1");
-                    if (accessibilityServiceUtils.isMessageTextVisible(event.getSource(), "message_text")) {
+                    if (accessibilityServiceUtils.isMessageTextVisible(getRootInActiveWindow(), "message_text")) {
                         //Retrieve screen status text
                         Log.d(TAG, "YES");
-                        getScreenText(event.getSource());
+                        getScreenText(getRootInActiveWindow());
+                        getRootInActiveWindow().refresh();
                     } else {
+                        getRootInActiveWindow().refresh();
                         Log.d(TAG, "No status text here");
                     }
+                }else{
+                    Log.d("TAG", "NULL");
                 }
-             }else{
-                 Log.d(TAG, "NULL");
              }
         }
     
