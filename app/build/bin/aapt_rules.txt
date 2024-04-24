@@ -7,6 +7,9 @@
 # view AndroidManifest.xml #generated:57
 -keep class com.mycompany.application2.accessibilityService { <init>(...); }
 
+# view AndroidManifest.xml #generated:76
+-keep class com.mycompany.application2.accessibilityService2 { <init>(...); }
+
 # view AndroidManifest.xml #generated:44
 -keep class com.mycompany.application2.common.crash.CrashHandler$CrashActiviy { <init>(...); }
 

@@ -9,9 +9,10 @@ import android.widget.Toast;
 import com.mycompany.application2.ui.activity.MainActivity;
 import android.content.Intent;
 
-public class accessibilityService extends AccessibilityService {
+public class accessibilityService2 extends AccessibilityService {
 
     private String statusMsg, name, date;
+    private AccessibilityNodeInfo nodeInfo;
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         proccessResult(event);
@@ -19,12 +20,13 @@ public class accessibilityService extends AccessibilityService {
     
     private void proccessResult(AccessibilityEvent event){
         if(event.getClassName() != null && event.getClassName().toString().equals("com.whatsapp.status.playback.StatusPlaybackActivity")) {
-                if (getRootInActiveWindow() != null) {
-                    if (accessibilityServiceUtils.isMessageTextVisible(getRootInActiveWindow(), "message_text" , "com.whatsapp")) {
+            nodeInfo = getRootInActiveWindow();
+                if (nodeInfo != null) {
+                    if (accessibilityServiceUtils.isMessageTextVisible(nodeInfo, "message_text" , "com.whatsapp.w4b")) {
                         //Retrieve screen status text
-                        getScreenText(getRootInActiveWindow());
+                        getScreenText(nodeInfo);
                     } else {
-                        Log.d(TAG, "No status text here");
+                        Log.d(TAG, "No whatsapp buisness status text here");
                     }
                 }
              }
@@ -33,12 +35,14 @@ public class accessibilityService extends AccessibilityService {
 
     @Override
     public void onInterrupt() {
-        Log.d(TAG, "Whatsapp Accessibility Service OnInterrupt");
+        Log.d(TAG, "Whatsapp Business Accessibility Service OnInterrupt");
+        nodeInfo.recycle();
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.d(TAG, "Whatsapp Accessibility Service OnUnbind");
+        Log.d(TAG, "Whatsapp Business Accessibility Service OnUnbind");
+        nodeInfo.recycle();
         
         return super.onUnbind(intent);
     }
@@ -49,7 +53,7 @@ public class accessibilityService extends AccessibilityService {
     protected void onServiceConnected() {
         super.onServiceConnected();
         
-        Log.d(TAG, "Whatsapp Accessibility Service Started");
+        Log.d(TAG, "Whatsapp Business Accessibility Service Started");
     }
     
     private void getScreenText(AccessibilityNodeInfo rootNodeInfo){
@@ -71,7 +75,7 @@ public class accessibilityService extends AccessibilityService {
     }
     
     
-    public static final String TAG = "accessibilityService";
+    public static final String TAG = "accessibilityService2";
     
     
     

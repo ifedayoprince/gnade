@@ -10,13 +10,13 @@ import java.util.List;
 public class accessibilityServiceUtils {
     
     static String nodeText;
-    public static boolean isMessageTextVisible(AccessibilityNodeInfo nodeInfo, String idName) {
+    public static boolean isMessageTextVisible(AccessibilityNodeInfo nodeInfo, String idName, String packageName) {
         AccessibilityNodeInfo rootNode = nodeInfo;
         if (rootNode == null) {
             return false;
         }
 
-        AccessibilityNodeInfo messageText = findViewByID(rootNode, "com.whatsapp:id/" + idName);
+        AccessibilityNodeInfo messageText = findViewByID(rootNode, packageName + ":id/" + idName);
         if (messageText != null && messageText.getText() != null) {
             nodeText = messageText.getText().toString();
             return true;
