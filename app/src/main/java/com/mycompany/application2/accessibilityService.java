@@ -12,6 +12,7 @@ import android.content.Intent;
 public class accessibilityService extends AccessibilityService {
 
     private String statusMsg, name, date;
+    private final String packageName = "com.whatsapp";
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         proccessResult(event);
@@ -20,7 +21,7 @@ public class accessibilityService extends AccessibilityService {
     private void proccessResult(AccessibilityEvent event){
         if(event.getClassName() != null && event.getClassName().toString().equals("com.whatsapp.status.playback.StatusPlaybackActivity")) {
                 if (getRootInActiveWindow() != null) {
-                    if (accessibilityServiceUtils.isMessageTextVisible(getRootInActiveWindow(), "message_text" , "com.whatsapp")) {
+                    if (accessibilityServiceUtils.isMessageTextVisible(getRootInActiveWindow(), "message_text" , packageName)) {
                         //Retrieve screen status text
                         getScreenText(getRootInActiveWindow());
                     } else {
@@ -53,17 +54,17 @@ public class accessibilityService extends AccessibilityService {
     }
     
     private void getScreenText(AccessibilityNodeInfo rootNodeInfo){
-        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "name")){
+        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "name", packageName)){
             name = accessibilityServiceUtils.retrieveStatusText();
             Log.d(TAG, name);
         }
         
-        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "date")){
+        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "date", packageName)){
             date = accessibilityServiceUtils.retrieveStatusText();
             Log.d(TAG, date);
         }
         
-        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "message_text")){
+        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "message_text", packageName)){
             statusMsg = accessibilityServiceUtils.retrieveStatusText();
             Log.d(TAG, statusMsg);
         }

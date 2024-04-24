@@ -13,6 +13,7 @@ public class accessibilityService2 extends AccessibilityService {
 
     private String statusMsg, name, date;
     private AccessibilityNodeInfo nodeInfo;
+    private final String packageName = "com.whatsapp.w4b";
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         proccessResult(event);
@@ -22,7 +23,7 @@ public class accessibilityService2 extends AccessibilityService {
         if(event.getClassName() != null && event.getClassName().toString().equals("com.whatsapp.status.playback.StatusPlaybackActivity")) {
             nodeInfo = getRootInActiveWindow();
                 if (nodeInfo != null) {
-                    if (accessibilityServiceUtils.isMessageTextVisible(nodeInfo, "message_text" , "com.whatsapp.w4b")) {
+                    if (accessibilityServiceUtils.isMessageTextVisible(nodeInfo, "message_text", packageName)) {
                         //Retrieve screen status text
                         getScreenText(nodeInfo);
                     } else {
@@ -57,17 +58,17 @@ public class accessibilityService2 extends AccessibilityService {
     }
     
     private void getScreenText(AccessibilityNodeInfo rootNodeInfo){
-        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "name")){
+        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "name", packageName)){
             name = accessibilityServiceUtils.retrieveStatusText();
             Log.d(TAG, name);
         }
         
-        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "date")){
+        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "date", packageName)){
             date = accessibilityServiceUtils.retrieveStatusText();
             Log.d(TAG, date);
         }
         
-        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "message_text")){
+        if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "message_text", packageName)){
             statusMsg = accessibilityServiceUtils.retrieveStatusText();
             Log.d(TAG, statusMsg);
         }
