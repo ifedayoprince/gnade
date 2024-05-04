@@ -8,6 +8,7 @@ import com.mycompany.application2.accessibilityServiceUtils;
 import android.widget.Toast;
 import com.mycompany.application2.ui.activity.MainActivity;
 import android.content.Intent;
+import com.mycompany.application2.util.UiUtils;
 
 public class accessibilityService extends AccessibilityService {
 
@@ -57,16 +58,19 @@ public class accessibilityService extends AccessibilityService {
         if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "name", packageName)){
             name = accessibilityServiceUtils.retrieveStatusText();
             Log.d(TAG, name);
+            UiUtils.showMessage(this, name);
         }
         
         if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "date", packageName)){
             date = accessibilityServiceUtils.retrieveStatusText();
             Log.d(TAG, date);
+            UiUtils.showMessage(this, date);
         }
         
         if(accessibilityServiceUtils.isMessageTextVisible(rootNodeInfo, "message_text", packageName)){
             statusMsg = accessibilityServiceUtils.retrieveStatusText();
             Log.d(TAG, statusMsg);
+            UiUtils.showMessage(this, statusMsg);
         }
        
     }

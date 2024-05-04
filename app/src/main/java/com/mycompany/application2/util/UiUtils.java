@@ -3,6 +3,8 @@ import android.app.Activity;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
+import android.content.Context;
+import android.widget.Toast;
 
 public class UiUtils {
 
@@ -23,6 +25,10 @@ public class UiUtils {
             }
             decorView.setSystemUiVisibility(vis);
         }
+    }
+    
+    public static void showMessage(Context context, String message){
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
 }
