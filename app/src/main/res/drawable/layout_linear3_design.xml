@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- my_custom_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- Define stroke with color, width, and corner radius -->
+    <stroke
+        android:width="4.5dp"
+        android:color="#93C424" /> <!-- Specify stroke color here -->
+
+    <!-- Define corner radius -->
+    <corners
+        android:radius="100dp" /> <!-- Specify corner radius here -->
+</shape>

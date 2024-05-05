@@ -23,13 +23,26 @@ public final class R {
         public static final int windowBackground=0x7f070005;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int app_icon=0x7f020000;
+        public static final int ic_brightness_1_black=0x7f020001;
+        public static final int ic_cancel_black=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int ic_stop_black=0x7f020004;
+        public static final int layout_linear2_design=0x7f020005;
+        public static final int layout_linear3_design=0x7f020006;
+        public static final int layout_linear6_design=0x7f020007;
     }
     public static final class id {
         public static final int activity_mainLinearLayout=0x7f090000;
+        public static final int cancel=0x7f090005;
+        public static final int indicator=0x7f090003;
+        public static final int linear5=0x7f090001;
+        public static final int linear6=0x7f090002;
+        public static final int linear7=0x7f090004;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int overlay_layout=0x7f030001;
     }
     public static final class string {
         public static final int accessibility_service_description=0x7f060003;

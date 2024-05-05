@@ -15,9 +15,12 @@ public class accessibilityService2 extends AccessibilityService {
     private String statusMsg, name, date;
     private AccessibilityNodeInfo nodeInfo;
     private final String packageName = "com.whatsapp.w4b";
+    private OverlayWindowManager overlayWindowManager;
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
+        if(!CatchStatusSaver.isReady){
         proccessResult(event);
+        }
     }
     
     private void proccessResult(AccessibilityEvent event){
@@ -38,13 +41,13 @@ public class accessibilityService2 extends AccessibilityService {
     @Override
     public void onInterrupt() {
         Log.d(TAG, "Whatsapp Business Accessibility Service OnInterrupt");
-        nodeInfo.recycle();
+        overlayWindowManager.removeOverlay();
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
         Log.d(TAG, "Whatsapp Business Accessibility Service OnUnbind");
-        nodeInfo.recycle();
+        overlayWindowManager.removeOverlay();
         
         return super.onUnbind(intent);
     }
@@ -55,6 +58,7 @@ public class accessibilityService2 extends AccessibilityService {
     protected void onServiceConnected() {
         super.onServiceConnected();
         
+        overlayWindowManager = new OverlayWindowManager(this);
         Log.d(TAG, "Whatsapp Business Accessibility Service Started");
     }
     
